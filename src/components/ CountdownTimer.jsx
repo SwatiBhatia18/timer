@@ -23,8 +23,15 @@ const CountdownTimer = () => {
   })
 
   useEffect(() => {
-    const now = new Date()
-    const targetDate = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000)
+    let storedTarget = localStorage.getItem("countdownTargetDate")
+    let targetDate
+    if (storedTarget) {
+      targetDate = new Date(storedTarget)
+    } else {
+      const now = new Date()
+      targetDate = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000)
+      localStorage.setItem("countdownTargetDate", targetDate.toISOString())
+    }
 
     const updateCountdown = () => {
       const newTimeLeft = getTimeLeft(targetDate)
@@ -41,7 +48,7 @@ const CountdownTimer = () => {
     <div className="flex flex-col items-center justify-center min-h-screen countdown-container relative overflow-hidden">
       <StarsBg />
       <div className="absolute top-45 sm:top-60 md:top-60 lg:top-50  left-0 right-0 flex justify-center z-20">
-         <h1 className="mb-12 text-white text-lg md:text-2xl font-normal tracking-[0.3em] uppercase whitespace-nowrap text-center">
+        <h1 className="mb-12 text-white text-lg md:text-2xl font-normal tracking-[0.3em] uppercase whitespace-nowrap text-center">
           {"WE'RE LAUNCHING SOON"}
         </h1>
       </div>
