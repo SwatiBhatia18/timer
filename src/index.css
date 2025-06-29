@@ -29,18 +29,6 @@ body {
   max-width: 1200px;
 }
 
-
-@keyframes zoom {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-}
-
-/* Flip card animation */
 .flip-card {
   background-color: transparent;
   width: 140px;
